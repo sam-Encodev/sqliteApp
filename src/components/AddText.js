@@ -31,7 +31,7 @@ export default function AddText({ text, setText, addUser }) {
         maxLength={40}
         style={styles.input}
         onChangeText={(text) => setText(text)}
-        placeholder="useless placeholder"
+        placeholder="enter text"
         value={text}
       />
       <TouchableOpacity style={styles.button} onPress={onPress}>
