@@ -4,7 +4,7 @@ Big inspiration from [Beto](https://github.com/betomoedano)'s [Budget-Buddy-App]
 
 [Run Migration](https://orm.drizzle.team/kit-docs/commands)
 
-Additional features:
+Packages used:
 - [@expo/vector-icons](https://docs.expo.dev/guides/icons/) A popular icon set through an icon font
 - [React Native](https://reactnative.dev/) Create native apps for Android, iOS, and more using React
 - [@react-navigation/native](https://reactnavigation.org/) React Native integration for React Navigation.
