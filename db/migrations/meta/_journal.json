@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1717770074410,
-      "tag": "0000_illegal_famine",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1717777331959,
-      "tag": "0001_funny_maestro",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1717888548208,
-      "tag": "0002_bumpy_carmella_unuscione",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1717890814659,
-      "tag": "0003_big_spiral",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1717891426378,
-      "tag": "0004_overjoyed_pandemic",
+      "when": 1718220454742,
+      "tag": "0000_dizzy_kate_bishop",
       "breakpoints": true
     }
   ]

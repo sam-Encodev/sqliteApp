@@ -1,1 +1,0 @@
-ALTER TABLE `users` DROP COLUMN `random_text`;
