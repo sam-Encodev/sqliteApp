@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../db";
 import Home from "./screens/Home";
-import { StyleSheet, Alert } from "react-native";
+import { StyleSheet, Alert, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import HeaderButton from "./components/HeaderButton";
 import migrations from "../db/migrations/migrations";
@@ -18,9 +18,9 @@ export default function Main() {
 
   React.useEffect(() => {
     if (error) {
-      return Alert.alert("Error", error.message, [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
+      // return Alert.alert("Error", error.message, [
+      //   { text: "OK", onPress: () => console.log("OK Pressed") },
+      // ]);
     }
   }, [error]);
 
@@ -42,7 +42,7 @@ export default function Main() {
               icon={
                 <MaterialIcons
                   name="add-circle-outline"
-                  size={24}
+                  size={18}
                   color="#007BFF"
                   style={{ marginRight: 5 }}
                 />
@@ -50,6 +50,16 @@ export default function Main() {
               title="New Transaction"
               onPress={() => navigation.navigate("AddTransaction")}
             />
+          ),
+          headerLeft: () => (
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold" 
+              }}
+            >
+              Budget Tracker
+            </Text>
           ),
         })}
       />
