@@ -1,6 +1,6 @@
 # React Native with Drizzle ORM
 
-Big inspiration is from [Beto](https://github.com/betomoedano)'s [Budget-Buddy-App](https://github.com/betomoedano/Budget-Buddy-App)
+Big inspiration from [Beto](https://github.com/betomoedano)'s [Budget-Buddy-App](https://github.com/betomoedano/Budget-Buddy-App)
 
 [Run Migration](https://orm.drizzle.team/kit-docs/commands)
 
