@@ -35,14 +35,8 @@ export default function ListItem({ transaction }) {
 }
 
 function TransactionInfo({ id, date, description }) {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
   return (
-    <View style={{ flexGrow: 1, gap: 6, flexShrink: 1 }}>
+    <View style={{ flexGrow: 1, gap: 3, flexShrink: 1 }}>
       <Text style={{ fontSize: 16, fontWeight: "bold" }}>{description}</Text>
       <Text>Transaction number {id}</Text>
       <Text style={{ fontSize: 12, color: "gray" }}>
@@ -71,9 +65,9 @@ function CategoryItem({ categoryColor, name, emoji }) {
 function Amount({ iconName, color, amount }) {
   return (
     <View style={styles.row_amount}>
-      <AntDesign name={iconName} size={18} color={color} />
+      <AntDesign name={iconName} size={12} color={color} />
       <AutoSizeText
-        fontSize={32}
+        fontSize={30}
         mode={ResizeTextMode.max_lines}
         numberOfLines={1}
         style={[styles.amount, { maxWidth: "80%" }]}
@@ -86,8 +80,8 @@ function Amount({ iconName, color, amount }) {
 
 const styles = StyleSheet.create({
   amount: {
-    fontSize: 32,
-    fontWeight: "800",
+    fontSize: 30,
+    fontWeight: "500",
   },
   row: {
     flexDirection: "row",

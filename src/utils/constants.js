@@ -127,7 +127,7 @@ export const readablePeriod = new Date().toLocaleDateString("default", {
 });
 
 export const getMoneyTextStyle = (value) => ({
-  fontWeight: "bold",
+  fontWeight: "500",
   color: value < 0 ? "#ff4500" : "#2e8b57",
 });
 

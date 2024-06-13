@@ -37,6 +37,7 @@ export default function Main() {
         component={Home}
         options={({ navigation }) => ({
           title: null,
+          headerLargeTitle: false,
           headerRight: () => (
             <HeaderButton
               icon={
@@ -55,7 +56,7 @@ export default function Main() {
             <Text
               style={{
                 fontSize: 20,
-                fontWeight: "bold" 
+                fontWeight: "bold"
               }}
             >
               Budget Tracker
