@@ -68,6 +68,7 @@ export default function Main() {
         name="AddTransaction"
         component={AddTransaction}
         options={({ navigation }) => ({
+          gestureEnabled: true,
           presentation: "modal",
           title: null,
           headerTransparent: false,
