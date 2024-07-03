@@ -5,23 +5,22 @@ import migrations from "../db/migrations/migrations";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 
 export default function Main() {
-  const { success, error } = useMigrations(db, migrations);
-  console.log(db);
+ const { success, error } = useMigrations(db, migrations);
 
-  if (error) {
-    return (
-      <View>
-        <Text>Migration error: {error.message}</Text>
-      </View>
-    );
-  }
-  if (!success) {
-    return (
-      <View>
-        <Text>Migration is in progress...</Text>
-      </View>
-    );
-  }
+ if (error) {
+  return (
+   <View>
+    <Text>Migration error: {error.message}</Text>
+   </View>
+  );
+ }
+ if (!success) {
+  return (
+   <View>
+    <Text>Migration is in progress...</Text>
+   </View>
+  );
+ }
 
-  return <Home />;
+ return <Home />;
 }
