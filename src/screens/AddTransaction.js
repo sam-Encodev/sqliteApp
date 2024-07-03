@@ -1,9 +1,9 @@
 import React from "react";
 import { db } from "../../db";
 import { transaction } from "../../db/schema";
-import { View, Text, TextInput, Alert } from "react-native";
 import HeaderButton from "../components/HeaderButton";
 import CategoryButton from "../components/CategoryButton";
+import { View, Text, TextInput, Alert } from "react-native";
 import { categories as items, numericValue, types } from "../utils/constants";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
@@ -20,8 +20,10 @@ export default function AddTransaction({ navigation }) {
   const [typeSelected, setTypeSelected] = React.useState("");
 
   const addTransaction = async (selected, categoryId) => {
-    if (!amount || !categoryId || !description || !selected.type) {
-      return Alert.alert("Please fill all fields");
+
+    if (amount === ""  || Number.isNaN(amount) || !categoryId  || !description === "" || !selected.type) {
+     Alert.alert("Please fill all fields");
+     return 
     }
 
     await db.insert(transaction).values({
