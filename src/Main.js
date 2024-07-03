@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../db";
 import Home from "./screens/Home";
-import { StyleSheet, Alert, Text } from "react-native";
+import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import HeaderButton from "./components/HeaderButton";
 import migrations from "../db/migrations/migrations";
@@ -78,7 +78,3 @@ export default function Main() {
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
