@@ -14,6 +14,7 @@ Packages used:
 - [Expo](https://orm.drizzle.team/docs/get-started-sqlite#expo-sqlite/) Create universal native apps with React that run on Android, iOS, and the web
 - [@react-native-segmented-control/segmented-control](https://github.com/react-native-segmented-control/segmented-control/) React Native SegmentedControl library.
 - [dayjs](https://orm.drizzle.team/docs/get-started-sqlite#expo-sqlite/) Minimalist JavaScript library that parses, validates, manipulates, and displays dates and times
+- [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/) Easily create smooth animations and interactions
 
 
 ## Screenshots
