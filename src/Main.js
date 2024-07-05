@@ -13,68 +13,68 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
-  useDrizzleStudio(db);
-  const { success, error } = useMigrations(db, migrations);
+ useDrizzleStudio(db);
+ const { success, error } = useMigrations(db, migrations);
 
-  React.useEffect(() => {
-    if (error) {
-      // return Alert.alert("Error", error.message, [
-      //   { text: "OK", onPress: () => console.log("OK Pressed") },
-      // ]);
-    }
-  }, [error]);
+ React.useEffect(() => {
+  if (error) {
+   // return Alert.alert("Error", error.message, [
+   //   { text: "OK", onPress: () => console.log("OK Pressed") },
+   // ]);
+  }
+ }, [error]);
 
-  // if (!success) {
-  //   return Alert.alert("Info", "Migration is in progress...", [
-  //     { text: "OK", onPress: () => console.log("OK Pressed") },
-  //   ]);
-  // }
+ // if (!success) {
+ //   return Alert.alert("Info", "Migration is in progress...", [
+ //     { text: "OK", onPress: () => console.log("OK Pressed") },
+ //   ]);
+ // }
 
-  return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }) => ({
-          title: null,
-          headerLargeTitle: false,
-          headerRight: () => (
-            <HeaderButton
-              icon={
-                <MaterialIcons
-                  name="add-circle-outline"
-                  size={18}
-                  color="#007BFF"
-                  style={{ marginRight: 5 }}
-                />
-              }
-              title="New Transaction"
-              onPress={() => navigation.navigate("AddTransaction")}
-            />
-          ),
-          headerLeft: () => (
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "bold"
-              }}
-            >
-              Budget Tracker
-            </Text>
-          ),
-        })}
+ return (
+  <Stack.Navigator initialRouteName="Home">
+   <Stack.Screen
+    name="Home"
+    component={Home}
+    options={({ navigation }) => ({
+     title: null,
+     headerLargeTitle: false,
+     headerRight: () => (
+      <HeaderButton
+       icon={
+        <MaterialIcons
+         name="add-circle-outline"
+         size={18}
+         color="#007BFF"
+         style={{ marginRight: 5 }}
+        />
+       }
+       title="New Transaction"
+       onPress={() => navigation.navigate("AddTransaction")}
       />
-      <Stack.Screen
-        name="AddTransaction"
-        component={AddTransaction}
-        options={({ navigation }) => ({
-          gestureEnabled: true,
-          presentation: "modal",
-          title: null,
-          headerTransparent: false,
-          headerRight: () => <HeaderButton title="Save" />,
-        })}
-      />
-    </Stack.Navigator>
-  );
+     ),
+     headerLeft: () => (
+      <Text
+       style={{
+        fontSize: 20,
+        fontWeight: "bold",
+       }}
+      >
+       Budget Tracker
+      </Text>
+     ),
+    })}
+   />
+   <Stack.Screen
+    name="AddTransaction"
+    component={AddTransaction}
+    options={({ navigation }) => ({
+     gestureEnabled: true,
+     presentation: "modal",
+     title: null,
+     headerTransparent: false,
+     headerRight: () => <HeaderButton title="Save" />,
+    })}
+   />
+  </Stack.Navigator>
+ );
 }
