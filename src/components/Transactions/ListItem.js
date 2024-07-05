@@ -8,11 +8,16 @@ import { AntDesign } from "@expo/vector-icons";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { StyleSheet, Text, View } from "react-native";
 import { AutoSizeText, ResizeTextMode } from "react-native-auto-size-text";
+import Animated, { FadeInRight, FadeOutRight } from "react-native-reanimated";
 
 export default function ListItem({ transaction }) {
  dayjs.extend(relativeTime);
  return (
-  <View style={styles.row}>
+  <Animated.View
+   entering={FadeInRight}
+   exiting={FadeOutRight}
+   style={styles.row}
+  >
    <View style={{ width: "40%", gap: 3 }}>
     <Amount
      amount={transaction.amount}
@@ -30,7 +35,7 @@ export default function ListItem({ transaction }) {
     description={transaction.description}
     id={transaction.id}
    />
-  </View>
+  </Animated.View>
  );
 }
 
