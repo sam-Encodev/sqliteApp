@@ -7,7 +7,9 @@ import { View, Text, TextInput, Alert } from "react-native";
 import { categories as items, numericValue, types } from "../utils/constants";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
-export default function AddTransaction({ navigation }) {
+export default function AddTransaction({ route, navigation }) {
+ const { params } = route;
+
  const [selected, setSelected] = React.useState({
   index: 0,
   type: types[0].name,
