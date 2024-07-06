@@ -19,13 +19,21 @@ export default function TransactionList() {
  const navigation = useNavigation();
  const { data } = useLiveQuery(db.select().from(transaction));
 
- const deleteTransaction = async (id) => {
+ const _handleDelete = async (id) => {
   await db.delete(transaction).where(eq(transaction.id, id));
+ };
+
+ const _handleEdit = (index) => {
+  console.log("edit");
+  navigation.navigate({
+   name: "AddTransaction",
+   params: { index },
+  });
  };
 
  //  const [selecetedIndex, setSelectedIndex] = useState(null);
 
- const _handelActions = () => {
+ const _handelActions = (index) => {
   ActionSheetIOS.showActionSheetWithOptions(
    {
     options: ["Edit", "Delete", "Cancel"],
@@ -34,7 +42,11 @@ export default function TransactionList() {
    },
    (buttonIndex) => {
     if (buttonIndex === 1) {
-     deleteTransaction(data.item.id);
+     _handleDelete(data.item.id);
+    } else if (buttonIndex === 0) {
+     _handleEdit(index);
+    } else {
+     null;
     }
    },
   );
@@ -51,7 +63,7 @@ export default function TransactionList() {
        onPress={() => {
         // setSelectedIndex(index);
         if (Platform.OS === "ios") {
-         return _handelActions();
+         return _handelActions(index);
         }
 
         navigation.navigate({
