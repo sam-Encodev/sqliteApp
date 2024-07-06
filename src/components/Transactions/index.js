@@ -7,33 +7,33 @@ import TransactionSummary from "./Summary";
 import { transaction } from "../../../db/schema";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import {
- TouchableOpacity,
  View,
  FlatList,
- ActionSheetIOS,
  Platform,
+ ActionSheetIOS,
+ TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { store } from "../../store";
 
 export default function TransactionList() {
  const navigation = useNavigation();
  const { data } = useLiveQuery(db.select().from(transaction));
+ const setSelectedItem = store((state) => state.setSelectedItem);
 
- const _handleDelete = async (id) => {
-  await db.delete(transaction).where(eq(transaction.id, id));
+ const _handleDelete = async (itemID) => {
+  await db.delete(transaction).where(eq(transaction.id, itemID));
  };
 
- const _handleEdit = (index) => {
-  console.log("edit");
+ const _handleEdit = ({ item }) => {
+  setSelectedItem(item);
   navigation.navigate({
    name: "AddTransaction",
-   params: { index },
+   params: { index: item?.id },
   });
  };
 
- //  const [selecetedIndex, setSelectedIndex] = useState(null);
-
- const _handelActions = (index) => {
+ const _handelActions = (item) => {
   ActionSheetIOS.showActionSheetWithOptions(
    {
     options: ["Edit", "Delete", "Cancel"],
@@ -42,9 +42,9 @@ export default function TransactionList() {
    },
    (buttonIndex) => {
     if (buttonIndex === 1) {
-     _handleDelete(data.item.id);
+     _handleDelete({ itemID: item?.id });
     } else if (buttonIndex === 0) {
-     _handleEdit(index);
+     _handleEdit({ item });
     } else {
      null;
     }
@@ -63,13 +63,14 @@ export default function TransactionList() {
        onPress={() => {
         // setSelectedIndex(index);
         if (Platform.OS === "ios") {
-         return _handelActions(index);
+         return _handelActions(item);
         }
 
-        navigation.navigate({
-         name: "Sheet",
-         params: { index },
-        });
+        // setSelectedItem(item);
+        // navigation.navigate({
+        //  name: "Sheet",
+        //  params: { index },
+        // });
        }}
        onLongPress={() => console.log("onLongPress")}
       >
