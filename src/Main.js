@@ -9,6 +9,7 @@ import AddTransaction from "./screens/AddTransaction";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Sheet from "./screens/Sheet";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function Main() {
     options={({ navigation }) => ({
      title: null,
      headerLargeTitle: false,
+     headerTransparent: false,
      headerRight: () => (
       <HeaderButton
        icon={
@@ -68,12 +70,26 @@ export default function Main() {
     name="AddTransaction"
     component={AddTransaction}
     options={({ navigation }) => ({
+     headerShown: true,
      gestureEnabled: true,
      presentation: "modal",
-     title: null,
      headerTransparent: false,
+     headerTitle: "New Transaction",
      headerRight: () => <HeaderButton title="Save" />,
     })}
+   />
+
+   <Stack.Screen
+    name="Sheet"
+    component={Sheet}
+    options={{
+     headerShown: false,
+     gestureEnabled: true,
+     cardOverlayEnabled: true,
+     presentation: "transparentModal",
+     // animationTypeForReplace: "push",
+     animation: "fade",
+    }}
    />
   </Stack.Navigator>
  );
