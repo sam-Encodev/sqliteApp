@@ -1,11 +1,3 @@
-import React from "react";
-import { eq } from "drizzle-orm";
-import { db } from "../../../db";
-import ListItem from "./ListItem";
-import EmptyState from "../EmptyState";
-import TransactionSummary from "./Summary";
-import { transaction } from "../../../db/schema";
-import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import {
  View,
  FlatList,
@@ -13,8 +5,16 @@ import {
  ActionSheetIOS,
  TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { eq } from "drizzle-orm";
+import { db } from "../../../db";
+import ListItem from "./ListItem";
 import { store } from "../../store";
+import EmptyState from "../EmptyState";
+import TransactionSummary from "./Summary";
+import { transaction } from "../../../db/schema";
+import { useLiveQuery } from "drizzle-orm/expo-sqlite";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TransactionList() {
  const navigation = useNavigation();
@@ -29,7 +29,6 @@ export default function TransactionList() {
   setSelectedItem(item);
   navigation.navigate({
    name: "EditTransaction",
-   params: { index: item?.id },
   });
  };
 
@@ -64,11 +63,10 @@ export default function TransactionList() {
          return _handelActions(item);
         }
 
-        // setSelectedItem(item);
-        // navigation.navigate({
-        //  name: "Sheet",
-        //  params: { index },
-        // });
+        setSelectedItem(item);
+        navigation.navigate({
+         name: "Sheet",
+        });
        }}
        onLongPress={() => console.log("onLongPress")}
       >
