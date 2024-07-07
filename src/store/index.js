@@ -4,21 +4,19 @@ export const store = create((set) => ({
  selectedItem: {
   id: null,
   category_id: null,
-  amount: '',
-  date: null,
-  description: '',
-  type: null,
+  amount: "",
+  description: "",
+  type: "",
  },
  setSelectedItem: (data) => {
-  set((state) => ({
-   selectedItem: {
-    id: data?.id,
-    category_id: data?.category_id,
-    amount: data?.amount,
-    date: data?.data,
-    description: data?.description,
-    type: data?.type,
-   },
-  }));
+  // console.log({ setSelectedItem: data });
+    set((state) => ({
+     selectedItem: {
+      category_id: data ? data?.category_id : null,
+      amount: data ? String(data?.amount) : "",
+      description: data ? data?.description : "",
+      type: data ? data?.type : "",
+     },
+    }));
  },
 }));
