@@ -1,6 +1,6 @@
 export const types = [
  {
-  id: 1,
+  id: 0,
   name: "Expense",
   color: "red",
  },
@@ -143,4 +143,16 @@ export const numericValue = (text) => {
 export const getTransactionType = (data, type) => {
  const filter = data.filter((t) => t.type === type);
  return filter[0]?.sum ?? 0;
+};
+
+export const getIndex = (item, data = types) => {
+ // console.log({item})
+ // console.log(data)
+ const filter = data.filter((t) => t.name === item);
+ return filter[0];
+};
+
+export const getID = (item, data = types) => {
+ const filter = data.filter((t) => t.id === item);
+ return filter[0];
 };
