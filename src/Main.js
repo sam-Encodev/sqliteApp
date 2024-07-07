@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../db";
+import { db, expoDb } from "../db";
 import Home from "./screens/Home";
 import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -10,13 +10,13 @@ import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Sheet from "./screens/Sheet";
-import EditTransaction from './screens/EditTransaction'
+import EditTransaction from "./screens/EditTransaction";
 
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
- useDrizzleStudio(db);
  const { success, error } = useMigrations(db, migrations);
+ useDrizzleStudio(expoDb);
 
  React.useEffect(() => {
   if (error) {
@@ -80,7 +80,7 @@ export default function Main() {
     })}
    />
 
-<Stack.Screen
+   <Stack.Screen
     name="EditTransaction"
     component={EditTransaction}
     options={({ navigation }) => ({
