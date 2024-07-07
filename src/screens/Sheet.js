@@ -2,8 +2,7 @@ import { View, TouchableOpacity, Text } from "react-native";
 import React, { useCallback, useMemo, useRef } from "react";
 import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 
-const Sheet = ({ route, navigation }) => {
- const { params } = route;
+const Sheet = ({ navigation }) => {
  const sheetRef = useRef(null);
 
  const snapPoints = useMemo(() => ["15%", "90%"], []);
@@ -22,6 +21,13 @@ const Sheet = ({ route, navigation }) => {
   sheetRef.current?.close();
  }, []);
 
+ const _handleEdit = () => {
+  navigation.navigate({
+   name: "EditTransaction",
+  });
+ };
+
+ // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
  const renderBackdrop = useCallback(
   (props) => (
    <BottomSheetBackdrop
@@ -48,7 +54,7 @@ const Sheet = ({ route, navigation }) => {
     onPress={() => handleClosePress()}
    >
     <View style={{ height: "100%" }}>
-     <TouchableOpacity onPress={() => console.log("edit")}>
+     <TouchableOpacity onPress={() => _handleEdit()}>
       <Text
        style={{
         color: "black",

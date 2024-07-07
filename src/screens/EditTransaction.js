@@ -10,7 +10,6 @@ import { categories as items, getIndex, getID } from "../utils/constants";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 export default function EditTransaction({ route, navigation }) {
- const { params } = route;
  const selectedItem = store((state) => state.selectedItem);
 
  const [selected, setSelected] = React.useState({
@@ -59,7 +58,7 @@ export default function EditTransaction({ route, navigation }) {
     category_id: !categoryId ? selectedItem.category_id : categoryId,
     type: !selected.type ? selectedItem.type : selected.type,
    })
-   .where(eq(transaction.id, params?.index));
+   .where(eq(transaction.id, selectedItem?.id));
 
   navigation.goBack();
  };
@@ -67,7 +66,7 @@ export default function EditTransaction({ route, navigation }) {
  return (
   <View style={{ flex: 1, padding: 15 }}>
    <TextInput
-    placeholder={params?.index ? selectedItem.amount : "$Amount"}
+    placeholder={selectedItem?.amount ? selectedItem.amount : "$Amount"}
     style={{ fontSize: 32, marginBottom: 15, fontWeight: "bold" }}
     keyboardType="numeric"
     onChangeText={(text) => {
@@ -76,7 +75,7 @@ export default function EditTransaction({ route, navigation }) {
    />
 
    <TextInput
-    placeholder={params?.index ? selectedItem.description : "Description"}
+    placeholder={selectedItem?.description ? selectedItem.description : "Description"}
     style={{ marginBottom: 15 }}
     onChangeText={(text) => {
      setDescription(text);
@@ -86,7 +85,7 @@ export default function EditTransaction({ route, navigation }) {
    <SegmentedControl
     values={["Expense", "Income"]}
     style={{ marginBottom: 15 }}
-    selectedIndex={params?.index ? selected.index : 0}
+    selectedIndex={selectedItem?.id ? selected.index : 0}
     onChange={(event) => {
      setSelected({
       index: event.nativeEvent.selectedSegmentIndex,
