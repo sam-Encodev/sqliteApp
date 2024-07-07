@@ -10,6 +10,7 @@ import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Sheet from "./screens/Sheet";
+import EditTransaction from './screens/EditTransaction'
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +77,19 @@ export default function Main() {
      headerTransparent: false,
      headerTitle: "New Transaction",
      headerRight: () => <HeaderButton title="Save" />,
+    })}
+   />
+
+<Stack.Screen
+    name="EditTransaction"
+    component={EditTransaction}
+    options={({ navigation }) => ({
+     headerShown: true,
+     gestureEnabled: true,
+     presentation: "modal",
+     headerTransparent: false,
+     headerTitle: "Edit Transaction",
+     headerRight: () => <HeaderButton title="Update" />,
     })}
    />
 
