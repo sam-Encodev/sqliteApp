@@ -54,10 +54,10 @@ export default function EditTransaction({ route, navigation }) {
   await db
    .update(transaction)
    .set({
-    amount: Number(amount),
-    description: description,
-    category_id: categoryId,
-    type: selected.type,
+    amount: !amount ? selectedItem.amount : Number(amount),
+    description: !description ? selectedItem.description : description,
+    category_id: !categoryId ? selectedItem.category_id : categoryId,
+    type: !selected.type ? selectedItem.type : selected.type,
    })
    .where(eq(transaction.id, params?.index));
 
