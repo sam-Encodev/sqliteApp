@@ -55,6 +55,7 @@ function TransactionInfo({ id, date, description }) {
 function CategoryItem({ categoryColor, name, emoji }) {
  return (
   <View
+   // biome-ignore lint/style/useTemplate: <explanation>
    style={[styles.categoryContainer, { backgroundColor: categoryColor + "40" }]}
   >
    <Text style={styles.categoryText}>
