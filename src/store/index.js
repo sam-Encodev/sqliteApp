@@ -12,6 +12,7 @@ export const store = create((set) => ({
   // console.log({ setSelectedItem: data });
     set((state) => ({
      selectedItem: {
+      id: data ? data?.id : null,
       category_id: data ? data?.category_id : null,
       amount: data ? String(data?.amount) : "",
       description: data ? data?.description : "",
