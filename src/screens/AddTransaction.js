@@ -1,6 +1,5 @@
 import React from "react";
 import { db } from "../../db";
-import { store } from "../store";
 import { transaction } from "../../db/schema";
 import HeaderButton from "../components/HeaderButton";
 import CategoryButton from "../components/CategoryButton";
@@ -8,30 +7,17 @@ import { View, Text, TextInput, Alert } from "react-native";
 import { categories as items, numericValue, types } from "../utils/constants";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
-export default function AddTransaction({ route, navigation }) {
- const selectedItem = store((state) => state.selectedItem);
- const setSelectedItem = store((state) => state.setSelectedItem);
-
- console.log({ selectedItem: selectedItem.amount });
- const { params } = route;
- console.log(params?.index);
-
+export default function AddTransaction({ navigation }) {
  const [selected, setSelected] = React.useState({
   index: 0,
   type: types[0].name,
  });
 
  const [categories, setCategories] = React.useState([]);
- const [amount, setAmount] = React.useState(String(selectedItem?.amount) || "");
- const [categoryId, setCategoryId] = React.useState(
-  selectedItem.category_id || null,
- );
- const [description, setDescription] = React.useState(
-  selectedItem.description || "",
- );
- const [typeSelected, setTypeSelected] = React.useState(
-  selectedItem.type || "",
- );
+ const [categoryId, setCategoryId] = React.useState(null);
+ const [amount, setAmount] = React.useState("");
+ const [description, setDescription] = React.useState("");
+ const [typeSelected, setTypeSelected] = React.useState("");
 
  const addTransaction = async (selected, categoryId) => {
   if (
@@ -55,42 +41,14 @@ export default function AddTransaction({ route, navigation }) {
   navigation.goBack();
  };
 
- const updateTransaction = async (selected, categoryId) => {
-  if (
-   amount === "" ||
-   Number.isNaN(amount) ||
-   !categoryId ||
-   !description === "" ||
-   !selected.type
-  ) {
-   Alert.alert("Please fill all fields");
-   return;
-  }
-
-  await db.insert(transaction).values({
-   amount: Number(amount),
-   description: description,
-   category_id: categoryId,
-   type: selected.type,
-  });
-
-  navigation.goBack();
- };
-
  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
  React.useEffect(() => {
-  setSelectedItem();
-
   navigation.setOptions({
-   headerTitle: params?.index ? "Edit Transaction" : "Add Transaction",
+   headerTitle: "Add Transaction",
    headerRight: () => (
     <HeaderButton
-     title={params?.index ? "Update" : "Save"}
-     onPress={() =>
-      params?.index
-       ? updateTransaction(selected, categoryId)
-       : addTransaction(selected, categoryId)
-     }
+     title="Save"
+     onPress={() => addTransaction(selected, categoryId)}
     />
    ),
   });
@@ -108,7 +66,6 @@ export default function AddTransaction({ route, navigation }) {
  return (
   <View style={{ flex: 1, padding: 15 }}>
    <TextInput
-    value={amount}
     placeholder="$Amount"
     style={{ fontSize: 32, marginBottom: 15, fontWeight: "bold" }}
     keyboardType="numeric"
@@ -116,13 +73,15 @@ export default function AddTransaction({ route, navigation }) {
      setAmount(numericValue(text));
     }}
    />
+
    <TextInput
-    value={description}
     placeholder="Description"
     style={{ marginBottom: 15 }}
     onChangeText={setDescription}
    />
+
    <Text style={{ marginBottom: 6 }}>Select a entry type</Text>
+
    <SegmentedControl
     values={["Expense", "Income"]}
     style={{ marginBottom: 15 }}
