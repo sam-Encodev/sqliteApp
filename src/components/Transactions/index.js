@@ -21,14 +21,14 @@ export default function TransactionList() {
  const { data } = useLiveQuery(db.select().from(transaction));
  const setSelectedItem = store((state) => state.setSelectedItem);
 
- const _handleDelete = async (itemID) => {
+ const _handleDelete = async ({ itemID }) => {
   await db.delete(transaction).where(eq(transaction.id, itemID));
  };
 
  const _handleEdit = ({ item }) => {
   setSelectedItem(item);
   navigation.navigate({
-   name: "AddTransaction",
+   name: "EditTransaction",
    params: { index: item?.id },
   });
  };
@@ -45,8 +45,6 @@ export default function TransactionList() {
      _handleDelete({ itemID: item?.id });
     } else if (buttonIndex === 0) {
      _handleEdit({ item });
-    } else {
-     null;
     }
    },
   );
