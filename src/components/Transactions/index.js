@@ -6,7 +6,7 @@ import {
  TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { eq } from "drizzle-orm";
+import { eq, desc} from "drizzle-orm";
 import { db } from "../../../db";
 import ListItem from "./ListItem";
 import { store } from "../../store";
@@ -18,7 +18,9 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function TransactionList() {
  const navigation = useNavigation();
- const { data } = useLiveQuery(db.select().from(transaction));
+ const { data } = useLiveQuery(
+  db.select().from(transaction).orderBy(desc(transaction.id)),
+ );
  const setSelectedItem = store((state) => state.setSelectedItem);
 
  const _handleDelete = async ({ itemID }) => {
