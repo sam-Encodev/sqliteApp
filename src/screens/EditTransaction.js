@@ -1,18 +1,12 @@
 import React from "react";
 import { db } from "../../db";
-import { desc, eq } from "drizzle-orm";
 import { store } from "../store";
+import { eq } from "drizzle-orm";
 import { transaction } from "../../db/schema";
+import { View, TextInput } from "react-native";
 import HeaderButton from "../components/HeaderButton";
 import CategoryButton from "../components/CategoryButton";
-import { View, Text, TextInput, Alert } from "react-native";
-import {
- categories as items,
- numericValue,
- types,
- getIndex,
- getID,
-} from "../utils/constants";
+import { categories as items, getIndex, getID } from "../utils/constants";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 export default function EditTransaction({ route, navigation }) {
@@ -24,16 +18,13 @@ export default function EditTransaction({ route, navigation }) {
   type: getIndex(selectedItem?.type).name,
  });
 
- console.log({ selected });
  const [amount, setAmount] = React.useState("");
  const [categories, setCategories] = React.useState([]);
  const [description, setDescription] = React.useState("");
  const [categoryId, setCategoryId] = React.useState(null);
  const [typeSelected, setTypeSelected] = React.useState("");
 
- console.log({ selectedItem });
- //  const setSelectedItem = store((state) => state.setSelectedItem);
-
+ // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
  React.useEffect(() => {
   navigation.setOptions({
    headerTitle: "Edit Transaction",
@@ -60,13 +51,6 @@ export default function EditTransaction({ route, navigation }) {
  }
 
  const updateTransaction = async () => {
-  const data = {
-   amount: amount,
-   description: description,
-   category_id: categoryId,
-   type: selected.type,
-  };
-  
   await db
    .update(transaction)
    .set({
@@ -77,9 +61,7 @@ export default function EditTransaction({ route, navigation }) {
    })
    .where(eq(transaction.id, params?.index));
 
-  // console.log({ data });
-
-  // navigation.goBack();
+  navigation.goBack();
  };
 
  return (

@@ -25,15 +25,15 @@ export default function ListItem({ transaction }) {
      iconName={iconType(transaction.type)}
     />
     <CategoryItem
-     categoryColor={categoryForCurrentItem(transaction).color}
-     name={categoryForCurrentItem(transaction).name}
-     emoji={categoryForCurrentItem(transaction).emoji}
+     categoryColor={categoryForCurrentItem(transaction)?.color}
+     name={categoryForCurrentItem(transaction)?.name}
+     emoji={categoryForCurrentItem(transaction)?.emoji}
     />
    </View>
    <TransactionInfo
-    date={transaction.date}
-    description={transaction.description}
-    id={transaction.id}
+    date={transaction?.date}
+    description={transaction?.description}
+    id={transaction?.id}
    />
   </Animated.View>
  );

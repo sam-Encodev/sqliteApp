@@ -118,8 +118,11 @@ export const iconType = (type) => {
  return "pluscircle";
 };
 
-export const categoryForCurrentItem = (transaction) =>
- categories.find((category) => category.id === transaction.category_id);
+export const categoryForCurrentItem = (transaction) => {
+ return categories.find(
+  (category) => category.id === Number(transaction.category_id),
+ );
+};
 
 export const readablePeriod = new Date().toLocaleDateString("default", {
  month: "long",
