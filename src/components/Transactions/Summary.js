@@ -5,11 +5,10 @@ import {
 } from "../../utils/constants";
 import * as React from "react";
 import { db } from "../../../db";
-import { sql } from "drizzle-orm";
+import { sql, asc } from "drizzle-orm";
 import { transaction } from "../../../db/schema";
 import { StyleSheet, Text, View } from "react-native";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
-import { getTransactionType } from "../../utils/constants";
 
 export default function TransactionSummary() {
  const { data } = useLiveQuery(
@@ -19,11 +18,12 @@ export default function TransactionSummary() {
     sum: sql`cast(sum(${transaction.amount}) as int)`,
    })
    .from(transaction)
-   .groupBy(transaction.type),
+   .groupBy(transaction.type)
+   .orderBy(asc(transaction.type)),
  );
 
- const totalExpenses = getTransactionType(data, "Expense");
- const totalIncome = getTransactionType(data, "Income");
+ const totalExpenses = data[0]?.sum;
+ const totalIncome = data[1]?.sum;
  const savings = totalIncome - totalExpenses;
 
  return (
