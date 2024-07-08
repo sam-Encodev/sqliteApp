@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import {
- typeColor,
  iconType,
+ typeColor,
  categoryForCurrentItem,
 } from "../../utils/constants";
 import { AntDesign } from "@expo/vector-icons";
@@ -34,19 +34,19 @@ export default function ListItem({ transaction }) {
     date={transaction?.date}
     description={transaction?.description}
     id={transaction?.id}
+    createdAt={transaction?.createdAt}
    />
   </Animated.View>
  );
 }
 
-function TransactionInfo({ id, date, description }) {
+function TransactionInfo({ id, description, createdAt }) {
  return (
   <View style={{ flexGrow: 1, gap: 3, flexShrink: 1 }}>
    <Text style={{ fontSize: 16, fontWeight: "bold" }}>{description}</Text>
    <Text>Transaction number {id}</Text>
    <Text style={{ fontSize: 12, color: "gray" }}>
-    {/* {new Date(date * 1000).toLocaleDateString(options)} */}
-    {dayjs(date).fromNow()}
+    {dayjs(createdAt).fromNow()}
    </Text>
   </View>
  );
