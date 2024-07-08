@@ -5,8 +5,8 @@ export default function CategoryButton({
  id,
  title,
  isSelected,
- setTypeSelected,
  setCategoryId,
+ setTypeSelected,
 }) {
  return (
   <TouchableOpacity
