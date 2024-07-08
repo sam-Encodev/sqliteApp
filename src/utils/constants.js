@@ -149,8 +149,6 @@ export const getTransactionType = (data, type) => {
 };
 
 export const getIndex = (item, data = types) => {
- // console.log({item})
- // console.log(data)
  const filter = data.filter((t) => t.name === item);
  return filter[0];
 };
