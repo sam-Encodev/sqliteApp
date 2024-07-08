@@ -6,11 +6,11 @@ import {
  TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { eq, desc} from "drizzle-orm";
 import { db } from "../../../db";
 import ListItem from "./ListItem";
 import { store } from "../../store";
 import EmptyState from "../EmptyState";
+import { eq, desc } from "drizzle-orm";
 import TransactionSummary from "./Summary";
 import { transaction } from "../../../db/schema";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";

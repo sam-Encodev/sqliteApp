@@ -75,7 +75,9 @@ export default function EditTransaction({ route, navigation }) {
    />
 
    <TextInput
-    placeholder={selectedItem?.description ? selectedItem.description : "Description"}
+    placeholder={
+     selectedItem?.description ? selectedItem.description : "Description"
+    }
     style={{ marginBottom: 15 }}
     onChangeText={(text) => {
      setDescription(text);

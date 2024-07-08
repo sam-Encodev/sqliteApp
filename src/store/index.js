@@ -10,14 +10,14 @@ export const store = create((set) => ({
  },
  setSelectedItem: (data) => {
   // console.log({ setSelectedItem: data });
-    set((state) => ({
-     selectedItem: {
-      id: data ? data?.id : null,
-      category_id: data ? data?.category_id : null,
-      amount: data ? String(data?.amount) : "",
-      description: data ? data?.description : "",
-      type: data ? data?.type : "",
-     },
-    }));
+  set((state) => ({
+   selectedItem: {
+    id: data ? data?.id : null,
+    category_id: data ? data?.category_id : null,
+    amount: data ? String(data?.amount) : "",
+    description: data ? data?.description : "",
+    type: data ? data?.type : "",
+   },
+  }));
  },
 }));
