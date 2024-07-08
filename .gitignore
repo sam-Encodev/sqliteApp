@@ -34,3 +34,4 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 src/utils/queries.js
+commands.bash
