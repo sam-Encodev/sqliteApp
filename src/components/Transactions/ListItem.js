@@ -40,12 +40,13 @@ export default function ListItem({ transaction }) {
  );
 }
 
-function TransactionInfo({ id, description, createdAt }) {
+function TransactionInfo({ id, date, description, createdAt }) {
  return (
   <View style={{ flexGrow: 1, gap: 3, flexShrink: 1 }}>
    <Text style={{ fontSize: 16, fontWeight: "bold" }}>{description}</Text>
    <Text>Transaction number {id}</Text>
    <Text style={{ fontSize: 12, color: "gray" }}>
+    {/* {new Date(date * 1000).toLocaleDateString(options)} */}
     {dayjs(createdAt).fromNow()}
    </Text>
   </View>
