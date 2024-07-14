@@ -7,7 +7,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "drizzle": "drizzle-kit"
+    "drizzle": "drizzle-kit",
+    "format": "biome format --write"
   },
   "dependencies": {
     "@expo/vector-icons": "expo/vector-icons",
