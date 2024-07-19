@@ -1,10 +1,10 @@
-name: Build CI/CD
+name: Test CI/CD
 on:
   push:
     branches:
       - master
 jobs:
-  preliminary-checks:
+  test:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout code
@@ -16,6 +16,18 @@ jobs:
       - name: Install bun dependencies
         run: |
           bun install
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+            name: test-logs
+            path: log/
+      - name: Upload coverage results
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage
+          path: coverage/
       - name: Slack notification
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
