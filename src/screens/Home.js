@@ -20,6 +20,7 @@ export default function Home() {
   setQty(usersCount[0].count);
  };
 
+ // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
  useEffect(() => {
   console.log("Content.js mounted");
   try {

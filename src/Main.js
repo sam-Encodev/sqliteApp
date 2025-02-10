@@ -1,8 +1,8 @@
 import { db } from "../db";
 import Home from "./screens/Home";
 import { View, Text } from "react-native";
-import migrations from "../db/migrations/migrations";
-import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import migrations from "../drizzle/migrations";
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 
 export default function Main() {
  const { success, error } = useMigrations(db, migrations);

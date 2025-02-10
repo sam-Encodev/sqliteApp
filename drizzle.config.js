@@ -1,6 +1,7 @@
-export default {
-  schema: './db/schema.js',
-  out: './db/migrations',
+import { defineConfig } from 'drizzle-kit';
+export default defineConfig({
   dialect: 'sqlite',
   driver: 'expo',
-}
+  schema: './db/schema.js',
+  out: './drizzle',
+});
